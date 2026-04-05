@@ -18,6 +18,8 @@ const WEDDING_IMAGES = {
     "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/699b4499-c129-402c-a7b6-687c310cd1ff.png",
     "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/b145b85c-4097-4712-80b5-22a188387e26.png",
     "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/9928de3e-fa6c-4b35-a6ae-dcf8e8d883fc.png",
+    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/093f0584-b069-4016-971d-5870aec1ef93.jpeg",
+    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/cdb9c6e1-c5fe-4cfa-8954-9603402bebd4.jpeg",
   ]
 };
 
@@ -123,38 +125,59 @@ export default function App() {
           <motion.div 
             className="fixed inset-0 z-[100] flex overflow-hidden touch-none"
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: [0.45, 0, 0.55, 1] }}
+            transition={{ duration: 1.5, delay: 0.5 }}
           >
+            {/* Left Curtain */}
             <motion.div 
               initial={{ x: 0 }}
-              animate={isOpen ? { x: "-100%" } : { x: 0 }}
-              transition={{ duration: 1.5, ease: [0.45, 0, 0.55, 1] }}
-              className="w-1/2 h-full bg-wedding-maroon flex items-center justify-end border-r border-wedding-gold/30 shadow-[10px_0_30px_rgba(0,0,0,0.5)]"
-            />
+              exit={{ x: "-100%", skewX: -5 }}
+              transition={{ duration: 1.8, ease: [0.45, 0, 0.55, 1] }}
+              className="w-1/2 h-full bg-gradient-to-r from-wedding-maroon via-[#5a0606] to-wedding-maroon flex items-center justify-end border-r border-wedding-gold/30 shadow-[20px_0_50px_rgba(0,0,0,0.7)] relative"
+            >
+              <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/padded-little.png')] shadow-inner" />
+            </motion.div>
+
+            {/* Right Curtain */}
             <motion.div 
               initial={{ x: 0 }}
-              animate={isOpen ? { x: "100%" } : { x: 0 }}
-              transition={{ duration: 1.5, ease: [0.45, 0, 0.55, 1] }}
-              className="w-1/2 h-full bg-wedding-maroon flex items-center justify-start border-l border-wedding-gold/30 shadow-[-10px_0_30px_rgba(0,0,0,0.5)]"
-            />
+              exit={{ x: "100%", skewX: 5 }}
+              transition={{ duration: 1.8, ease: [0.45, 0, 0.55, 1] }}
+              className="w-1/2 h-full bg-gradient-to-l from-wedding-maroon via-[#5a0606] to-wedding-maroon flex items-center justify-start border-l border-wedding-gold/30 shadow-[-20px_0_50px_rgba(0,0,0,0.7)] relative"
+            >
+              <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/padded-little.png')] shadow-inner" />
+            </motion.div>
             
             <div className="absolute inset-0 flex flex-col items-center justify-center z-50 text-white p-6">
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.5, duration: 1 }}
+                exit={{ scale: 1.1, opacity: 0, filter: "blur(10px)" }}
+                transition={{ duration: 0.8 }}
                 className="text-center"
               >
-                <Heart className="w-16 h-16 text-wedding-gold mx-auto mb-6 animate-pulse" />
-                <h1 className="font-serif text-4xl md:text-6xl mb-4 tracking-wider leading-tight">
-                  Welcome to our <br /> Ghar Ki Pehli Shaadi
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.1, 1],
+                    rotate: [0, 5, -5, 0]
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity,
+                    ease: "easeInOut" 
+                  }}
+                >
+                  <Heart className="w-16 h-16 text-wedding-gold mx-auto mb-6 drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]" />
+                </motion.div>
+                <h1 className="font-serif text-4xl md:text-6xl mb-4 tracking-wider leading-tight drop-shadow-lg">
+                  Welcome to our <br /> <span className="text-wedding-gold">Ghar Ki Pehli Shaadi</span>
                 </h1>
                 <p className="text-wedding-cream/80 text-lg md:text-xl mb-12 font-light tracking-[0.2em] uppercase">Wedding Invitation</p>
                 <button 
                   onClick={() => setIsOpen(true)}
-                  className="px-10 py-5 bg-wedding-gold text-wedding-maroon font-bold rounded-full hover:bg-white active:scale-95 transition-all duration-300 shadow-[0_10px_30px_rgba(212,175,55,0.3)] uppercase tracking-widest text-sm min-h-[56px]"
+                  className="group relative px-12 py-5 bg-wedding-gold text-wedding-maroon font-bold rounded-full overflow-hidden transition-all duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_50px_rgba(212,175,55,0.4)] active:scale-95 uppercase tracking-widest text-sm min-h-[56px]"
                 >
-                  Open Invitation
+                  <span className="relative z-10">Open Invitation</span>
+                  <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                 </button>
               </motion.div>
             </div>
@@ -335,7 +358,9 @@ export default function App() {
               {WEDDING_IMAGES.memories.map((img, i) => (
                 <motion.div 
                   key={i}
-                  className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-2 md:border-4 border-wedding-gold/20 relative group"
+                  className={`rounded-2xl overflow-hidden shadow-2xl border-2 md:border-4 border-wedding-gold/20 relative group ${
+                    i >= 4 ? 'col-span-2 aspect-[16/9]' : 'aspect-[4/5]'
+                  }`}
                   whileHover={{ scale: 1.02, rotate: 1 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
