@@ -10,7 +10,7 @@ import { MapPin, Calendar, Heart, Clock, Send, ChevronDown } from 'lucide-react'
 // --- Wedding Configuration ---
 // PASTE YOUR IMAGE LINKS HERE
 const WEDDING_IMAGES = {
-  welcomeBackground: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/a1259de4-7fa4-4710-849b-8467672ce94d.png",
+  welcomeBackground: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/76d1767c-9f95-4d32-b0c0-3751da7fa36e.jpeg",
   bridePhoto: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/0189874e-6ad9-4183-87e1-d3888f761f0a.png",
   groomPhoto: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/4dabfee4-cef2-4746-a8a2-7618ca5f2920.png",
   memories: [
@@ -18,8 +18,8 @@ const WEDDING_IMAGES = {
     "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/699b4499-c129-402c-a7b6-687c310cd1ff.png",
     "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/b145b85c-4097-4712-80b5-22a188387e26.png",
     "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/9928de3e-fa6c-4b35-a6ae-dcf8e8d883fc.png",
-    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/093f0584-b069-4016-971d-5870aec1ef93.jpeg",
     "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/cdb9c6e1-c5fe-4cfa-8954-9603402bebd4.jpeg",
+    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/093f0584-b069-4016-971d-5870aec1ef93.jpeg",
   ]
 };
 
@@ -36,17 +36,25 @@ interface TimeLeft {
 const Section = ({ 
   children, 
   bgImage, 
-  className = "" 
+  className = "",
+  overlayClassName = "bg-black/50"
 }: { 
   children: React.ReactNode; 
   bgImage: string; 
   className?: string;
+  overlayClassName?: string;
 }) => (
   <section 
-    className={`relative min-h-screen flex flex-col items-center justify-center text-center p-6 bg-cover bg-center ${className}`}
-    style={{ backgroundImage: `url(${bgImage})` }}
+    className={`relative min-h-screen flex flex-col items-center justify-center text-center p-6 overflow-hidden ${className}`}
   >
-    <div className="absolute inset-0 bg-black/50 z-0" />
+    <motion.div 
+      initial={{ scale: 1 }}
+      whileInView={{ scale: 1.05 }}
+      transition={{ duration: 10, ease: "linear" }}
+      className="absolute inset-0 bg-cover bg-center z-0"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    />
+    <div className={`absolute inset-0 z-0 ${overlayClassName}`} />
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -214,7 +222,11 @@ export default function App() {
       <div className={`${!isOpen ? 'h-screen overflow-hidden' : 'scroll-smooth'}`}>
         
         {/* Welcome Section */}
-        <Section bgImage={WEDDING_IMAGES.welcomeBackground} className="snap-start">
+        <Section 
+          bgImage={WEDDING_IMAGES.welcomeBackground} 
+          className="snap-start"
+          overlayClassName="bg-black/30"
+        >
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
