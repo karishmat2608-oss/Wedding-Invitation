@@ -37,12 +37,16 @@ const Section = ({
   children, 
   bgImage, 
   className = "",
-  overlayClassName = "bg-black/50"
+  overlayClassName = "bg-black/50",
+  bgPosition = "bg-center",
+  topContent
 }: { 
   children: React.ReactNode; 
   bgImage: string; 
   className?: string;
   overlayClassName?: string;
+  bgPosition?: string;
+  topContent?: React.ReactNode;
 }) => (
   <section 
     className={`relative min-h-screen flex flex-col items-center justify-center text-center p-6 overflow-hidden ${className}`}
@@ -51,10 +55,17 @@ const Section = ({
       initial={{ scale: 1 }}
       whileInView={{ scale: 1.05 }}
       transition={{ duration: 10, ease: "linear" }}
-      className="absolute inset-0 bg-cover bg-center z-0"
+      className={`absolute inset-0 bg-cover ${bgPosition} z-0`}
       style={{ backgroundImage: `url(${bgImage})` }}
     />
     <div className={`absolute inset-0 z-0 ${overlayClassName}`} />
+    
+    {topContent && (
+      <div className="absolute top-12 left-0 right-0 z-20 px-6">
+        {topContent}
+      </div>
+    )}
+
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +83,7 @@ export default function App() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [showFab, setShowFab] = useState(false);
 
-  const weddingDate = useMemo(() => new Date("May 14, 2026 00:00:00").getTime(), []);
+  const weddingDate = useMemo(() => new Date("May 14, 2026 12:00:00").getTime(), []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -226,18 +237,27 @@ export default function App() {
           bgImage={WEDDING_IMAGES.welcomeBackground} 
           className="snap-start"
           overlayClassName="bg-black/30"
+          bgPosition="bg-[center_top]"
+          topContent={
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <h2 className="text-wedding-gold font-serif italic text-2xl md:text-3xl mb-2 font-bold drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]">Bismillah-ir-Rahman-ir-Rahim</h2>
+              <p className="text-wedding-cream/90 text-lg md:text-xl font-light tracking-wide">Wedding Of</p>
+            </motion.div>
+          }
         >
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="space-y-6"
+            className="space-y-6 pt-48 md:pt-64"
           >
-            <h2 className="text-wedding-gold font-serif italic text-2xl md:text-3xl mb-4">Bismillah-ir-Rahman-ir-Rahim</h2>
-            <p className="text-wedding-cream/90 text-lg md:text-xl mb-6 font-light tracking-wide">Wedding Of</p>
-            <h1 className="font-serif text-5xl md:text-8xl text-white mb-8 leading-tight drop-shadow-2xl">
+            <h1 className="font-serif text-3xl md:text-6xl text-white mb-8 leading-tight drop-shadow-2xl">
               Rizwana <br />
               <span className="text-wedding-gold">&</span> <br />
-              Noor Mohammed
+              Noor Mohammad
             </h1>
             <div className="mt-12 animate-bounce opacity-50">
               <ChevronDown className="w-8 h-8 text-wedding-gold mx-auto" />
@@ -286,7 +306,7 @@ export default function App() {
                   <span className="text-wedding-gold font-serif text-2xl md:text-3xl tracking-widest uppercase">The Groom</span>
                 </div>
               </div>
-              <h3 className="font-serif text-wedding-gold text-3xl md:text-4xl mb-2">Noor Mohammed</h3>
+              <h3 className="font-serif text-wedding-gold text-3xl md:text-4xl mb-2">Noor Mohammad</h3>
               <p className="text-wedding-cream/70 italic text-sm md:text-base">Son of Mr. Fakruddin & Mrs. Hazara Begum</p>
             </motion.div>
           </div>
@@ -317,6 +337,7 @@ export default function App() {
               <Calendar className="w-8 h-8 md:w-10 md:h-10 text-wedding-gold mx-auto mb-4" />
               <h3 className="font-serif text-2xl md:text-3xl mb-4 text-wedding-gold">Nikah</h3>
               <p className="text-lg md:text-xl mb-2">Thursday, 14th May 2026</p>
+              <p className="text-wedding-cream/70 text-sm md:text-base">12:00 PM Onwards</p>
               <p className="text-wedding-cream/70 mb-6 text-sm md:text-base">RRR Convention Hall, Anantapur</p>
               <button 
                 onClick={openMap}
@@ -331,8 +352,8 @@ export default function App() {
               <Clock className="w-8 h-8 md:w-10 md:h-10 text-wedding-gold mx-auto mb-4" />
               <h3 className="font-serif text-2xl md:text-3xl mb-4 text-wedding-gold">Valima</h3>
               <p className="text-lg md:text-xl mb-2">Friday, 15th May 2026</p>
-              <p className="text-wedding-cream/70 text-sm md:text-base">7:00 PM Onwards</p>
-               <p className="text-wedding-cream/70 mb-6 text-sm md:text-base">N S Grand, Anantapur</p>
+              <p className="text-wedding-cream/70 text-sm md:text-base">11:00 AM Onwards</p>
+               <p className="text-wedding-cream/70 mb-6 text-sm md:text-base">N S banquet hall, Anantapur</p>
                <button 
                 onClick={openValimaMap}
                 className="flex items-center gap-2 mx-auto px-8 py-3 bg-transparent border-2 border-wedding-gold text-wedding-gold rounded-full hover:bg-wedding-gold hover:text-wedding-maroon active:scale-95 transition-all font-bold text-sm uppercase tracking-widest min-h-[48px]"
@@ -420,7 +441,7 @@ export default function App() {
         <footer className="bg-wedding-maroon text-wedding-cream py-16 px-6 text-center border-t border-wedding-gold/20">
           <div className="max-w-4xl mx-auto">
             <Heart className="w-8 h-8 text-wedding-gold mx-auto mb-4" />
-            <p className="font-serif text-2xl mb-2">Rizwana & Noor Mohammed</p>
+            <p className="font-serif text-2xl mb-2">Rizwana & Noor Mohammad</p>
             <p className="text-wedding-cream/60 text-xs tracking-widest uppercase mb-8">May 14-15, 2026</p>
             <div className="h-px bg-wedding-gold/20 w-24 mx-auto mb-8" />
             <p className="text-wedding-cream/40 text-[10px] leading-relaxed">
