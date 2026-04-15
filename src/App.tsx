@@ -10,7 +10,7 @@ import { MapPin, Calendar, Heart, Clock, Send, ChevronDown } from 'lucide-react'
 // --- Wedding Configuration ---
 // PASTE YOUR IMAGE LINKS HERE
 const WEDDING_IMAGES = {
-  welcomeBackground: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/76d1767c-9f95-4d32-b0c0-3751da7fa36e.jpeg",
+  welcomeBackground: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/ec3fcf2a-b207-4dec-bd24-a19931ecf028.jpeg",
   bridePhoto: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/0189874e-6ad9-4183-87e1-d3888f761f0a.png",
   groomPhoto: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/4dabfee4-cef2-4746-a8a2-7618ca5f2920.png",
   memories: [
