@@ -242,9 +242,9 @@ export default function App() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="space-y-4 pt-32 md:pt-48"
+            className="space-y-4 pt-24 md:pt-36"
           >
-            <h2 className="text-wedding-gold font-serif italic text-2xl md:text-3xl mb-2 font-bold drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]">Bismillah-ir-Rahman-ir-Rahim</h2>
+            <h2 className="text-wedding-gold font-serif italic text-2xl md:text-3xl mb-6 font-bold drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]">Bismillah-ir-Rahman-ir-Rahim</h2>
             <p className="text-wedding-cream/90 text-lg md:text-xl font-light tracking-wide">Wedding Of</p>
             <h1 className="font-serif text-3xl md:text-6xl text-white mb-8 leading-tight drop-shadow-2xl">
               Rizwana <br />
