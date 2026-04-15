@@ -11,15 +11,15 @@ import { MapPin, Calendar, Heart, Clock, Send, ChevronDown } from 'lucide-react'
 // PASTE YOUR IMAGE LINKS HERE
 const WEDDING_IMAGES = {
   welcomeBackground: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/ec3fcf2a-b207-4dec-bd24-a19931ecf028.jpeg",
-  bridePhoto: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/0189874e-6ad9-4183-87e1-d3888f761f0a.png",
-  groomPhoto: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/4dabfee4-cef2-4746-a8a2-7618ca5f2920.png",
+  bridePhoto: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/c37ab4cd-a5be-41eb-85bb-c982fbf8f5d2.png",
+  groomPhoto: "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/7be12f09-b1fe-47a3-90fd-7fc5b35af693.png",
   memories: [
-    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/e2253787-d3db-4aa2-ad28-c6e0ee1f25a2.png",
-    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/699b4499-c129-402c-a7b6-687c310cd1ff.png",
-    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/b145b85c-4097-4712-80b5-22a188387e26.png",
+    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/fae48d42-3cb8-4077-b64d-bb18660e63d7.jpeg",
+    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/5685e671-cc6d-4666-99d9-ab2306f12354.jpeg",
     "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/9928de3e-fa6c-4b35-a6ae-dcf8e8d883fc.png",
-    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/cdb9c6e1-c5fe-4cfa-8954-9603402bebd4.jpeg",
-    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/093f0584-b069-4016-971d-5870aec1ef93.jpeg",
+    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/b145b85c-4097-4712-80b5-22a188387e26.png",
+    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/76d0b8e5-f6c5-4407-8e26-7c5f6880e196.jpeg",
+    "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/86c9edbb-d883-44a8-97a0-3e94b9a7c97a.jpeg",
   ]
 };
 
@@ -245,15 +245,15 @@ export default function App() {
               transition={{ duration: 1 }}
             >
               <h2 className="text-wedding-gold font-serif italic text-2xl md:text-3xl mb-2 font-bold drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]">Bismillah-ir-Rahman-ir-Rahim</h2>
-              <p className="text-wedding-cream/90 text-lg md:text-xl font-light tracking-wide">Wedding Of</p>
             </motion.div>
           }
         >
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="space-y-6 pt-48 md:pt-64"
+            className="space-y-4 pt-48 md:pt-64"
           >
+            <p className="text-wedding-cream/90 text-lg md:text-xl font-light tracking-wide">Wedding Of</p>
             <h1 className="font-serif text-3xl md:text-6xl text-white mb-8 leading-tight drop-shadow-2xl">
               Rizwana <br />
               <span className="text-wedding-gold">&</span> <br />
@@ -392,7 +392,7 @@ export default function App() {
                 <motion.div 
                   key={i}
                   className={`rounded-2xl overflow-hidden shadow-2xl border-2 md:border-4 border-wedding-gold/20 relative group ${
-                    i >= 4 ? 'col-span-2 aspect-[16/9]' : 'aspect-[4/5]'
+                    i === 0 || i === 1 || i >= 4 ? 'col-span-2 aspect-[16/9]' : 'aspect-[4/5]'
                   }`}
                   whileHover={{ scale: 1.02, rotate: 1 }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -445,7 +445,7 @@ export default function App() {
             <p className="text-wedding-cream/60 text-xs tracking-widest uppercase mb-8">May 14-15, 2026</p>
             <div className="h-px bg-wedding-gold/20 w-24 mx-auto mb-8" />
             <p className="text-wedding-cream/40 text-[10px] leading-relaxed">
-              Made with ❤️ by Karishma <br />
+              Designed with ❤️ by Karishma <br />
               © 2026 Wedding Invitation
             </p>
           </div>
