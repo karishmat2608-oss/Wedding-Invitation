@@ -238,21 +238,13 @@ export default function App() {
           className="snap-start"
           overlayClassName="bg-black/30"
           bgPosition="bg-[center_top]"
-          topContent={
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-            >
-              <h2 className="text-wedding-gold font-serif italic text-2xl md:text-3xl mb-2 font-bold drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]">Bismillah-ir-Rahman-ir-Rahim</h2>
-            </motion.div>
-          }
         >
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="space-y-4 pt-48 md:pt-64"
+            className="space-y-4 pt-32 md:pt-48"
           >
+            <h2 className="text-wedding-gold font-serif italic text-2xl md:text-3xl mb-2 font-bold drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]">Bismillah-ir-Rahman-ir-Rahim</h2>
             <p className="text-wedding-cream/90 text-lg md:text-xl font-light tracking-wide">Wedding Of</p>
             <h1 className="font-serif text-3xl md:text-6xl text-white mb-8 leading-tight drop-shadow-2xl">
               Rizwana <br />
@@ -446,6 +438,7 @@ export default function App() {
             <div className="h-px bg-wedding-gold/20 w-24 mx-auto mb-8" />
             <p className="text-wedding-cream/40 text-[10px] leading-relaxed">
               Designed with ❤️ by Karishma <br />
+              Conceptualized by Haneef <br/>
               © 2026 Wedding Invitation
             </p>
           </div>
